@@ -44,6 +44,16 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 </aside>
 
 # Get Car Prices
+`POST https://e-zbookings.com/api/v1/carprice`
+Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options
+Parameter | Required | Description
+--------- | ------- | -----------
+passenger | true | Passenger information that includes his name and contact info
+type | true | Point to Point (PP), Hourly (HR) or Daily (DL)
+date | true | Date of the Pick Up
+time | true | Time of the Pick Up
+pickup | true | Pick Up Location
+dropoff | true | Drop Off Location
 
 ```shell
 curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
@@ -60,15 +70,9 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 	"time": "13:52",
 	"pickup": {
 		"airportcode": "JFK",
-		"addressFull": "",
 		"countrycode": "US",
-		"address": "",
-		"zipcode": "",
-		"state": "NY",
 		"isairport": "true",
 		"countryname": "United States",
-		"locality": "null",
-		"longitude": -73.960323,
 		"sublocality": "",
 		"latitude": 40.64454
 	},
@@ -90,12 +94,12 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 }
 '
 ```
-
+Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "token": "cvjlthkte5lhfj83p4iitovc9j",
+    "token": "t122so3d90pj9hrqbb4nv7lv2f",
     "prices": [
         {
             "id": "1",
@@ -202,65 +206,94 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 
 This endpoint provides quotes for different car classes and meet and greet options
 
-# Book Request
+# Preview Booking Request
 
-`POST https://e-zbookings.com`
+`POST https://e-zbookings.com/api/v1/book`
 
-### Query Parameters
+Requests a final quote breakdown
 
-Parameter | Default | Description
+### Request Parameters
+
+Parameter | Required | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+token | true | A token of the reservation provided by Get Car Prices
+car | true | Selected Car Class to be used as means of transpiration
+option | true | Selected Airport Meet & Greet Option
+payment | false | Payment information, Optional, only needed to avoid additional request
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -X POST "https://e-zbookings.com/api/v1/book" \
+  -H "Content-Type: application/json" \
+  -d '
+{
+    "token": "t122so3d90pj9hrqbb4nv7lv2f",
+    "car": "SD",
+    "option": "C"
+}
+'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "token": "t122so3d90pj9hrqbb4nv7lv2f",
+  "amount_units": "USD",
+  "price": {
+    "base_fare": "$127.00",
+    "gratuity": "$25.40",
+    "toll_misc": "$9.50",
+    "parking": "N/A",
+    "meet_greet": "$0.00",
+    "stc_charge": "$16.03",
+    "wc_tax": "$4.45",
+    "total": "$182.38",
+    "misc": "N/A"
+  }
 }
 ```
+
+# Confirm Booking with Payment Information
+
+`POST https://e-zbookings.com/api/v1/pay`
+This request requires Authentication Header comprised of your API key and secret
+
+### Request Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+token | true | A token of the reservation provided by Get Car Prices Response
+payment | true | Credit card payment details
+
+```shell
+curl -X POST "https://e-zbookings.com/api/v1/pay" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic base64encodedkeyandsecret" \
+  -d '
+{
+    "token": "t122so3d90pj9hrqbb4nv7lv2f",
+    "payment": {
+        "type": "VI",
+        "cc": "4111111111111111",
+        "exp": "1115",
+        "zip": "10001",
+        "cvv": "123"
+    }
+}
+'
+```
+
+<aside class="success">
+Remember — a happy kitten is an authenticated kitten!
+</aside>
 
 This endpoint retrieves a specific kitten.
 
 <aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
 
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
 
