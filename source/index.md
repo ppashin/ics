@@ -45,15 +45,6 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 
 # Get Car Prices
 `POST https://e-zbookings.com/api/v1/carprice`
-Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options
-Parameter | Required | Description
---------- | ------- | -----------
-passenger | true | Passenger information that includes his name and contact info
-type | true | Point to Point (PP), Hourly (HR) or Daily (DL)
-date | true | Date of the Pick Up
-time | true | Time of the Pick Up
-pickup | true | Pick Up Location
-dropoff | true | Drop Off Location
 
 ```shell
 curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
@@ -94,6 +85,19 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 }
 '
 ```
+Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options
+
+
+Parameter | Required | Description
+--------- | ------- | -----------
+passenger | true | Passenger information that includes his name and contact info
+type | true | Point to Point (PP), Hourly (HR) or Daily (DL)
+date | true | Date of the Pick Up
+time | true | Time of the Pick Up
+pickup | true | Pick Up Location
+dropoff | true | Drop Off Location
+
+
 Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests
 > The above command returns JSON structured like this:
 
@@ -210,22 +214,6 @@ This endpoint provides quotes for different car classes and meet and greet optio
 
 `POST https://e-zbookings.com/api/v1/book`
 
-Requests a final quote breakdown
-
-### Request Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-token | true | A token of the reservation provided by Get Car Prices
-car | true | Selected Car Class to be used as means of transpiration
-option | true | Selected Airport Meet & Greet Option
-payment | false | Payment information, Optional, only needed to avoid additional request
-
-
-
-
-
-
 ```shell
 curl -X POST "https://e-zbookings.com/api/v1/book" \
   -H "Content-Type: application/json" \
@@ -237,6 +225,20 @@ curl -X POST "https://e-zbookings.com/api/v1/book" \
 }
 '
 ```
+
+Requests a final quote breakdown
+
+### Request Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+token | true | A token of the reservation provided by Get Car Prices
+car | true | Selected Car Class to be used as means of transpiration
+option | true | Selected Airport Meet & Greet Option
+
+
+
+
 
 > The above command returns JSON structured like this:
 
@@ -261,14 +263,6 @@ curl -X POST "https://e-zbookings.com/api/v1/book" \
 # Confirm Booking with Payment Information
 
 `POST https://e-zbookings.com/api/v1/pay`
-This request requires Authentication Header comprised of your API key and secret
-
-### Request Parameters
-
-Parameter | Required | Description
---------- | ------- | -----------
-token | true | A token of the reservation provided by Get Car Prices Response
-payment | true | Credit card payment details
 
 ```shell
 curl -X POST "https://e-zbookings.com/api/v1/pay" \
@@ -287,6 +281,16 @@ curl -X POST "https://e-zbookings.com/api/v1/pay" \
 }
 '
 ```
+This request requires Authentication Header comprised of your API key and secret
+
+### Request Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+token | true | A token of the reservation provided by Get Car Prices Response
+payment | true | Credit card payment details
+
+
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
