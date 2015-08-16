@@ -44,8 +44,6 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 </aside>
 
 # Get Car Prices
-`POST https://e-zbookings.com/api/v1/carprice`
-
 ```shell
 curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 -H "Content-Type: application/json" \
@@ -85,20 +83,6 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 }
 '
 ```
-Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options
-
-
-Parameter | Required | Description
---------- | ------- | -----------
-passenger | true | Passenger information that includes his name and contact info
-type | true | Point to Point (PP), Hourly (HR) or Daily (DL)
-date | true | Date of the Pick Up
-time | true | Time of the Pick Up
-pickup | true | Pick Up Location
-dropoff | true | Drop Off Location
-
-
-Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests
 > The above command returns JSON structured like this:
 
 ```json
@@ -208,9 +192,28 @@ Returns a Car Classes with Prices and Meet and Greet Options along with the toke
 }
 ```
 
+`POST https://e-zbookings.com/api/v1/carprice`
+
+Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options
+
+### Request Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+passenger | true | Passenger information that includes his name and contact info
+type | true | Point to Point (PP), Hourly (HR) or Daily (DL)
+date | true | Date of the Pick Up
+time | true | Time of the Pick Up
+pickup | true | Pick Up Location
+dropoff | true | Drop Off Location
+
+
+Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests
+
+
 This endpoint provides quotes for different car classes and meet and greet options
 
-# Preview Booking Request
+# Preview Booking
 
 `POST https://e-zbookings.com/api/v1/book`
 
@@ -260,10 +263,7 @@ option | true | Selected Airport Meet & Greet Option
 }
 ```
 
-# Confirm Booking with Payment Information
-
-`POST https://e-zbookings.com/api/v1/pay`
-
+# Confirm Booking
 ```shell
 curl -X POST "https://e-zbookings.com/api/v1/pay" \
   -H "Content-Type: application/json" \
@@ -281,6 +281,29 @@ curl -X POST "https://e-zbookings.com/api/v1/pay" \
 }
 '
 ```
+> Upon Successful booking the Request above will return following JSON:
+```json
+{
+  "token": "t122so3d90pj9hrqbb4nv7lv2f",
+  "success": "1",
+  "jobId": 658068
+}
+```
+
+> Upon a Credit Card Validation problem the JSON response:
+
+```json
+{
+  "token": "t122so3d90pj9hrqbb4nv7lv2f",
+  "success": "0",
+  "reason": "Invalid Credit Card"
+}
+```
+
+`POST https://e-zbookings.com/api/v1/pay`
+
+
+
 This request requires Authentication Header comprised of your API key and secret
 
 ### Request Parameters
