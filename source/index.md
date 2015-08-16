@@ -296,8 +296,6 @@ payment | true | Credit card payment details
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-This endpoint retrieves a specific kitten.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
 
 
