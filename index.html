@@ -76,8 +76,6 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 </aside>
 
 <h1 id="get-car-prices">Get Car Prices</h1>
-
-<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/carprice</code></p>
 <pre class="highlight shell"><code>curl -X POST  <span class="s2">"https://e-zbookings.com/api/v1/carprice"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s1">'
@@ -116,49 +114,6 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 }
 '</span>
 </code></pre>
-
-<p>Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>passenger</td>
-<td>true</td>
-<td>Passenger information that includes his name and contact info</td>
-</tr>
-<tr>
-<td>type</td>
-<td>true</td>
-<td>Point to Point (PP), Hourly (HR) or Daily (DL)</td>
-</tr>
-<tr>
-<td>date</td>
-<td>true</td>
-<td>Date of the Pick Up</td>
-</tr>
-<tr>
-<td>time</td>
-<td>true</td>
-<td>Time of the Pick Up</td>
-</tr>
-<tr>
-<td>pickup</td>
-<td>true</td>
-<td>Pick Up Location</td>
-</tr>
-<tr>
-<td>dropoff</td>
-<td>true</td>
-<td>Drop Off Location</td>
-</tr>
-</tbody></table>
-
-<p>Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests</p>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -269,9 +224,56 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/carprice</code></p>
+
+<p>Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options</p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>passenger</td>
+<td>true</td>
+<td>Passenger information that includes his name and contact info</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>Point to Point (PP), Hourly (HR) or Daily (DL)</td>
+</tr>
+<tr>
+<td>date</td>
+<td>true</td>
+<td>Date of the Pick Up</td>
+</tr>
+<tr>
+<td>time</td>
+<td>true</td>
+<td>Time of the Pick Up</td>
+</tr>
+<tr>
+<td>pickup</td>
+<td>true</td>
+<td>Pick Up Location</td>
+</tr>
+<tr>
+<td>dropoff</td>
+<td>true</td>
+<td>Drop Off Location</td>
+</tr>
+</tbody></table>
+
+<p>Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests</p>
+
 <p>This endpoint provides quotes for different car classes and meet and greet options</p>
 
-<h1 id="preview-booking-request">Preview Booking Request</h1>
+<h1 id="preview-booking">Preview Booking</h1>
 
 <p><code class="prettyprint">POST https://e-zbookings.com/api/v1/book</code></p>
 <pre class="highlight shell"><code>curl -X POST <span class="s2">"https://e-zbookings.com/api/v1/book"</span> <span class="se">\</span>
@@ -333,9 +335,7 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h1 id="confirm-booking-with-payment-information">Confirm Booking with Payment Information</h1>
-
-<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/pay</code></p>
+<h1 id="confirm-booking">Confirm Booking</h1>
 <pre class="highlight shell"><code>curl -X POST <span class="s2">"https://e-zbookings.com/api/v1/pay"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Basic base64encodedkeyandsecret"</span> <span class="se">\</span>
@@ -352,6 +352,27 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 }
 '</span>
 </code></pre>
+
+<blockquote>
+<p>Upon Successful booking the Request above will return following JSON:
+<code class="prettyprint">json
+{
+  &quot;token&quot;: &quot;t122so3d90pj9hrqbb4nv7lv2f&quot;,
+  &quot;success&quot;: &quot;1&quot;,
+  &quot;jobId&quot;: 658068
+}
+</code></p>
+
+<p>Upon a Credit Card Validation problem the JSON response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t122so3d90pj9hrqbb4nv7lv2f"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Credit Card"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/pay</code></p>
 
 <p>This request requires Authentication Header comprised of your API key and secret</p>
 
