@@ -51,30 +51,6 @@
 
 <p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own APIs documentation.</p>
 
-<h1 id="authentication">Authentication</h1>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://e-zbookings.com/api/v1"</span>
-  -H <span class="s2">"Authorization: Basic base64encodedkeyandsecret"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">base64encodedkeyandsecret</code> with your API credentials.</p>
-</blockquote>
-
-<p>ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us</p>
-
-<p>We expects for the API credentials to be included only in the pay requess to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: Basic base64encodedkeyandsecret</code></p>
-
-<aside class="notice">
-You must replace <code>base64encodedkeyandsecret</code> with your personal API credentials.
-</aside>
-
 <h1 id="get-car-prices">Get Car Prices</h1>
 <pre class="highlight shell"><code>curl -X POST  <span class="s2">"https://e-zbookings.com/api/v1/carprice"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -328,6 +304,30 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://e-zbookings.com/api/v1"</span>
+  -H <span class="s2">"Authorization: Basic base64encodedkeyandsecret"</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">base64encodedkeyandsecret</code> with your API credentials.</p>
+</blockquote>
+
+<p>ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us</p>
+
+<p>We expects for the API credentials to be included only in the pay requess to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: Basic base64encodedkeyandsecret</code></p>
+
+<aside class="notice">
+You must replace <code>base64encodedkeyandsecret</code> with your personal API credentials.
+</aside>
+
 <h1 id="confirm-booking">Confirm Booking</h1>
 <pre class="highlight shell"><code>curl -X POST <span class="s2">"https://e-zbookings.com/api/v1/pay"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -386,10 +386,6 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 <td>Credit card payment details</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
           <h1 id="errors">Errors</h1>
 
