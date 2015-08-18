@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='http://www.bookalimo.com/connect-with-us/'>Sign Up for a Developer Key</a>
+  - <a href='http://www.bookalimo.com/connect-with-us/'>Contact Us for a Developer Key</a>
 
 includes:
   - errors
@@ -58,23 +58,16 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 	},
 	"time": "13:52",
 	"pickup": {
-		"airportcode": "JFK",
-		"countrycode": "US",
 		"isairport": "true",
-		"countryname": "United States",
-		"sublocality": "",
-		"latitude": 40.64454
+		"airportcode": "JFK"
 	},
 	"date": "2015-06-29",
 	"dropoff": {
-		"airportcode": "null",
-		"addressFull": "",
 		"countrycode": "US",
-		"address": "",
+		"address": "32 bedford rd",
 		"zipcode": "10514",
 		"state": "NY",
-		"isairport": "false",
-		"countryname": "United States",
+		"isairport": "false"
 		"locality": "Chappaqua",
 		"longitude": -115.176067,
 		"sublocality": "null",
@@ -284,8 +277,6 @@ curl -X POST "https://e-zbookings.com/api/v1/pay" \
 > Upon Successful booking the Request above will return following JSON:
 ```json
 {
-  "token": "t122so3d90pj9hrqbb4nv7lv2f",
-  "success": "1",
   "jobId": 658068
 }
 ```
@@ -294,9 +285,8 @@ curl -X POST "https://e-zbookings.com/api/v1/pay" \
 
 ```json
 {
-  "token": "t122so3d90pj9hrqbb4nv7lv2f",
-  "success": "0",
-  "reason": "Invalid Credit Card"
+  "errors":
+	[ "Invalid Credit Card" ]
 }
 ```
 
