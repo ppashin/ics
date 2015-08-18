@@ -21,27 +21,6 @@ We have language bindings in Shell. You can view code examples in the dark area 
 
 This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own APIs documentation.
 
-# Authentication
-
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "https://e-zbookings.com/api/v1"
-  -H "Authorization: Basic base64encodedkeyandsecret"
-```
-
-> Make sure to replace `base64encodedkeyandsecret` with your API credentials.
-
-ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us
-
-We expects for the API credentials to be included only in the pay requess to the server in a header that looks like the following:
-
-`Authorization: Basic base64encodedkeyandsecret`
-
-<aside class="notice">
-You must replace <code>base64encodedkeyandsecret</code> with your personal API credentials.
-</aside>
 
 # Get Car Prices
 ```shell
@@ -255,6 +234,28 @@ option | true | Selected Airport Meet & Greet Option
   }
 }
 ```
+
+# Authentication
+
+> To authorize, use this code:
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://e-zbookings.com/api/v1"
+  -H "Authorization: Basic base64encodedkeyandsecret"
+```
+
+> Make sure to replace `base64encodedkeyandsecret` with your API credentials.
+
+ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us
+
+We expects for the API credentials to be included only in the pay requess to the server in a header that looks like the following:
+
+`Authorization: Basic base64encodedkeyandsecret`
+
+<aside class="notice">
+You must replace <code>base64encodedkeyandsecret</code> with your personal API credentials.
+</aside>
 
 # Confirm Booking
 ```shell
