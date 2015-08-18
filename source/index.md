@@ -237,19 +237,9 @@ option | true | Selected Airport Meet & Greet Option
 
 # Authentication
 
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "https://e-zbookings.com/api/v1"
-  -H "Authorization: Basic base64encodedkeyandsecret"
-```
-
-> Make sure to replace `base64encodedkeyandsecret` with your API credentials.
-
 ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us
 
-We expects for the API credentials to be included only in the pay requess to the server in a header that looks like the following:
+We expects for the API credentials to be included only in the pay request to the server in a header that looks like the following:
 
 `Authorization: Basic base64encodedkeyandsecret`
 
