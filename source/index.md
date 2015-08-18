@@ -265,6 +265,7 @@ curl -X POST "https://e-zbookings.com/api/v1/book" \
     "option": "C"
 }
 '
+```
 ```python
 def get_preview_booking():
     data      = token_id
