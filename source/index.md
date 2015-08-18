@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs:
   - shell
+  - python
 
 toc_footers:
   - <a href='http://www.bookalimo.com/connect-with-us/'>Contact Us for a Developer Key</a>
@@ -55,6 +56,70 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 }
 '
 ```
+```python
+    data = {
+       "type": "PP",
+       	"passenger": {
+       		"name_last": "Jones",
+       		"email": "njones@test.com",
+       		"name_first": "Nick",
+       		"phone": "(555) 686-5235"
+       	},
+       	"time": "13:52",
+       	"pickup": {
+       		"airportcode": "EWR",
+       		"addressFull": "",
+       		"countrycode": "US",
+       		"address": "",
+       		"zipcode": "10016",
+       		"state": "NY",
+       		"isairport": "true",
+       		"countryname": "United States",
+       		"locality": "NYC",
+       		"longitude": -73.960323,
+       		"sublocality": "null",
+       		"latitude": 40.64454
+       	},
+       	"date": "2015-06-29",
+       	"dropoff": {
+       		"airportcode": "null",
+       		"addressFull": "",
+       		"countrycode": "US",
+       		"address": "",
+       		"zipcode": "89119",
+       		"state": "NY",
+       		"isairport": "false",
+       		"countryname": "United States",
+       		"locality": "Chappaqua",
+       		"longitude": -115.176067,
+       		"sublocality": "null",
+       		"latitude": 36.09551
+       	}
+    }
+    
+    json_data               = json.dumps(data)
+    post_data               = json_data.encode('utf-8')
+    headers                 = {}
+    headers['Content-Type'] = 'application/json'
+    url                     = 'http://limo.waleup.com/api/v1/carprice'
+    req                     = urllib2.Request(url, post_data, headers)  
+    res                     = urllib2.urlopen(req)
+    result                  = res.read()
+
+    print 'POST http://limo.waleup.com/api/v1/carprice' 
+    pp                      = pprint.PrettyPrinter(indent=4)
+    json_object             = json.loads(result)
+    pp.pprint(json_object)
+    print "\n"
+
+    if 'token' in json_object:
+        result_token        = json_object ['token']
+        global token_id 
+        token_id            = result_token
+    else:
+         print 'Token is null'
+```
+
 > The above command returns JSON structured like this:
 
 ```json
