@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://www.bookalimo.com/connect-with-us/'>Contact Us for a Developer Key</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the International Chauffeured Service API! You can use our API to get our rates for Point to Point, Hourly and Daily car bookings. You can make a booking via ICS API.</p>
+
+<p>We have language bindings in Shell. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own APIs documentation.</p>
+
+<h1 id="get-car-prices">Get Car Prices</h1>
+<pre class="highlight shell"><code>curl -X POST  <span class="s2">"https://e-zbookings.com/api/v1/carprice"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d <span class="s1">'
+{
+    "type": "PP",
+    "passenger": {
+        "name_last": "Jones",
+        "email": "njones@test.com",
+        "name_first": "Nick",
+        "phone": "(555) 686-5235"
+    },
+    "time": "13:52",
+    "pickup": {
+        "isairport": "true",
+        "airportcode": "JFK"
+    },
+    "date": "2015-06-29",
+    "dropoff": {
+        "countrycode": "US",
+        "address": "32 bedford rd",
+        "zipcode": "10514",
+        "state": "NY",
+        "isairport": "false"
+        "locality": "Chappaqua",
+        "longitude": -115.176067,
+        "sublocality": "null",
+        "latitude": 36.09551
+    }
+}
+'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t122so3d90pj9hrqbb4nv7lv2f"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEDAN LINCOLN, CADILLAC"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BMW"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BMW 7 SERIES"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"212"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MBZ"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MERCEDES S CLASS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"212"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUV"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUV 5-6 PASSENGERS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SL6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRETCH LIMO 6 PASSENGERS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"177"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SL8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRETCH LIMO 8 PASSENGERS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SL10"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRETCH LIMO 10 PASSENGERS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPRINTER VAN 14 PASSENGERS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"262"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"carClassId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MBUS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MINIBUS 22-36 PASSENGERS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"437"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_pass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"max_lugg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Baggage Claim"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Curb Side"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gate"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"International"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/carprice</code></p>
+
+<p>Gets prices for specified pick up and drop off location for different Car Classes and Meet and Greet Options</p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>passenger</td>
+<td>true</td>
+<td>Passenger information that includes his name and contact info</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>Point to Point (PP), Hourly (HR) or Daily (DL)</td>
+</tr>
+<tr>
+<td>date</td>
+<td>true</td>
+<td>Date of the Pick Up</td>
+</tr>
+<tr>
+<td>time</td>
+<td>true</td>
+<td>Time of the Pick Up</td>
+</tr>
+<tr>
+<td>pickup</td>
+<td>true</td>
+<td>Pick Up Location</td>
+</tr>
+<tr>
+<td>dropoff</td>
+<td>true</td>
+<td>Drop Off Location</td>
+</tr>
+</tbody></table>
+
+<p>Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests</p>
+
+<p>This endpoint provides quotes for different car classes and meet and greet options</p>
+
+<h1 id="preview-booking">Preview Booking</h1>
+
+<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/book</code></p>
+<pre class="highlight shell"><code>curl -X POST <span class="s2">"https://e-zbookings.com/api/v1/book"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'
+{
+    "token": "t122so3d90pj9hrqbb4nv7lv2f",
+    "car": "SD",
+    "option": "C"
+}
+'</span>
+</code></pre>
+
+<p>Requests a final quote breakdown</p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>true</td>
+<td>A token of the reservation provided by Get Car Prices</td>
+</tr>
+<tr>
+<td>car</td>
+<td>true</td>
+<td>Selected Car Class to be used as means of transpiration</td>
+</tr>
+<tr>
+<td>option</td>
+<td>true</td>
+<td>Selected Airport Meet &amp; Greet Option</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t122so3d90pj9hrqbb4nv7lv2f"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount_units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"base_fare"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$127.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gratuity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$25.40"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"toll_misc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$9.50"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parking"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"meet_greet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"stc_charge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$16.03"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"wc_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$4.45"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$182.38"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"misc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us</p>
+
+<p>We expects for the API credentials to be included only in the pay request to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: Basic base64encodedkeyandsecret</code></p>
+
+<aside class="notice">
+You must replace <code>base64encodedkeyandsecret</code> with your personal API credentials.
+</aside>
+
+<h1 id="confirm-booking">Confirm Booking</h1>
+<pre class="highlight shell"><code>curl -X POST <span class="s2">"https://e-zbookings.com/api/v1/pay"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Basic base64encodedkeyandsecret"</span> <span class="se">\</span>
+  -d <span class="s1">'
+{
+    "token": "t122so3d90pj9hrqbb4nv7lv2f",
+    "payment": {
+        "type": "VI",
+        "cc": "4111111111111111",
+        "exp": "1115",
+        "zip": "10001",
+        "cvv": "123"
+    }
+}
+'</span>
+</code></pre>
+
+<blockquote>
+<p>Upon Successful booking the Request above will return following JSON:
+<code class="prettyprint">json
+{
+  &quot;jobId&quot;: 658068
+}
+</code></p>
+
+<p>Upon a Credit Card Validation problem the JSON response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w"> </span><span class="s2">"Invalid Credit Card"</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">POST https://e-zbookings.com/api/v1/pay</code></p>
+
+<p>This request requires Authentication Header comprised of your API key and secret</p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>true</td>
+<td>A token of the reservation provided by Get Car Prices Response</td>
+</tr>
+<tr>
+<td>payment</td>
+<td>true</td>
+<td>Credit card payment details</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
