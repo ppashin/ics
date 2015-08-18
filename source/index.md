@@ -306,10 +306,4 @@ payment | true | Credit card payment details
 
 
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-
-
 
