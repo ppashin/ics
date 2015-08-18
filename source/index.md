@@ -57,6 +57,7 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 '
 ```
 ```python
+def get_car_prices():
     data = {
        "type": "PP",
        	"passenger": {
@@ -264,8 +265,32 @@ curl -X POST "https://e-zbookings.com/api/v1/book" \
     "option": "C"
 }
 '
-```
+```python
+def get_preview_booking():
+    data      = token_id
+    udata     = data.decode("utf-8")
+    asciidata = udata.encode("ascii","ignore")
+    data      = {
+        "token": asciidata,
+        "car": "SD",
+        "option": "B"
+    }
+    
+    json_data               = json.dumps(data)
+    post_data               = json_data.encode('utf-8')
+    headers                 = {}
+    headers['Content-Type'] = 'application/json'
+    url                     = 'http://limo.waleup.com/api/v1/book'
+    req                     = urllib2.Request(url, post_data, headers)  
+    res                     = urllib2.urlopen(req)
+    result                  = res.read()
+    pp = pprint.PrettyPrinter(indent = 4)
+    print 'POST http://limo.waleup.com/api/v1/book'
+    json_object             = json.loads(result)
+    pp.pprint(json_object)
+    print "\n"
 
+```
 Requests a final quote breakdown
 
 ### Request Parameters
@@ -329,6 +354,34 @@ curl -X POST "https://e-zbookings.com/api/v1/pay" \
     }
 }
 '
+```
+```python
+def get_confirm_booking():
+    data = {
+        "token": token_id,
+            "payment": 
+            {
+                "type": "VI",
+                "cc": "4111111111111111",
+                "exp": "1115",
+                "zip": "10001",
+                "cvv": "123"
+           }
+    }
+            
+    json_data                = json.dumps(data)
+    post_data                = json_data.encode('utf-8')
+    headers                  = {}
+    headers['Content-Type']  = 'application/json'
+    headers['Authorization'] = 'Basic TW96aW86Um9ja3M='
+    url                      = 'http://limo.waleup.com/api/v1/pay'
+    req                      = urllib2.Request(url, post_data, headers)  
+    res                      = urllib2.urlopen(req)
+    result                   = res.read()
+    pp                       = pprint.PrettyPrinter(indent = 4)
+    print 'POST https://e-zbookings.com/api/v1/pay' 
+    json_object              = json.loads(result)
+    pp.pprint(json_object)
 ```
 > Upon Successful booking the Request above will return following JSON:
 ```json
