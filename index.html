@@ -37,7 +37,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://www.bookalimo.com/connect-with-us/'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://www.bookalimo.com/connect-with-us/'>Contact Us for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -89,23 +89,16 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
     },
     "time": "13:52",
     "pickup": {
-        "airportcode": "JFK",
-        "countrycode": "US",
         "isairport": "true",
-        "countryname": "United States",
-        "sublocality": "",
-        "latitude": 40.64454
+        "airportcode": "JFK"
     },
     "date": "2015-06-29",
     "dropoff": {
-        "airportcode": "null",
-        "addressFull": "",
         "countrycode": "US",
-        "address": "",
+        "address": "32 bedford rd",
         "zipcode": "10514",
         "state": "NY",
-        "isairport": "false",
-        "countryname": "United States",
+        "isairport": "false"
         "locality": "Chappaqua",
         "longitude": -115.176067,
         "sublocality": "null",
@@ -357,8 +350,6 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 <p>Upon Successful booking the Request above will return following JSON:
 <code class="prettyprint">json
 {
-  &quot;token&quot;: &quot;t122so3d90pj9hrqbb4nv7lv2f&quot;,
-  &quot;success&quot;: &quot;1&quot;,
   &quot;jobId&quot;: 658068
 }
 </code></p>
@@ -366,9 +357,8 @@ You must replace <code>base64encodedkeyandsecret</code> with your personal API c
 <p>Upon a Credit Card Validation problem the JSON response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t122so3d90pj9hrqbb4nv7lv2f"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Credit Card"</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w"> </span><span class="s2">"Invalid Credit Card"</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
