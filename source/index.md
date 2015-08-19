@@ -9,7 +9,6 @@ toc_footers:
   - <a href='http://www.bookalimo.com/connect-with-us/'>Contact Us for a Developer Key</a>
 
 includes:
-  - errors
 
 search: true
 ---
