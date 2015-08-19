@@ -330,7 +330,7 @@ option | true | Selected Airport Meet & Greet Option
 
 ICS uses API keys to allow access to the API. You can get ICS API key by contacting us at http://bookalimo.com/connect-with-us
 
-We expects for the API credentials to be included only in the pay request to the server in a header that looks like the following:
+We expect for the API credentials to be included only in the Confirm Booking request to the server in a header that looks like the following:
 
 `Authorization: Basic base64encodedkeyandsecret`
 
@@ -385,12 +385,13 @@ def get_confirm_booking():
     pp.pprint(json_object)
 ```
 > Upon Successful booking the Request above will return following JSON:
+
 ```json
 {
   "jobId": 658068
 }
 ```
-
+> Where jobId is reservation confirmation number
 > Upon a Credit Card Validation problem the JSON response:
 
 ```json
