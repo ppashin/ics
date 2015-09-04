@@ -26,6 +26,8 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 -d '
 {
 	"type": "PP",
+	"passengers": 1,
+	"luggage": 1,
 	"passenger": {
 		"name_last": "Jones",
 		"email": "njones@test.com",
@@ -35,7 +37,10 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 	"time": "13:52",
 	"pickup": {
 		"isairport": "true",
-		"airportcode": "JFK"
+		"airportcode": "JFK",
+		"airlinecode": "DL",
+		"flightno": "234",
+		"countrycode": "US"
 	},
 	"date": "2015-06-29",
 	"dropoff": {
@@ -44,10 +49,7 @@ curl -X POST  "https://e-zbookings.com/api/v1/carprice" \
 		"zipcode": "10514",
 		"state": "NY",
 		"isairport": "false"
-		"locality": "Chappaqua",
-		"longitude": -115.176067,
-		"sublocality": "null",
-		"latitude": 36.09551
+		"locality": "Chappaqua"
 	}
 }
 '
@@ -65,32 +67,18 @@ def get_car_prices():
        	"time": "13:52",
        	"pickup": {
        		"airportcode": "EWR",
-       		"addressFull": "",
        		"countrycode": "US",
-       		"address": "",
-       		"zipcode": "10016",
-       		"state": "NY",
        		"isairport": "true",
-       		"countryname": "United States",
-       		"locality": "NYC",
-       		"longitude": -73.960323,
-       		"sublocality": "null",
-       		"latitude": 40.64454
+       		"locality": "NYC"
        	},
        	"date": "2015-06-29",
        	"dropoff": {
-       		"airportcode": "null",
-       		"addressFull": "",
        		"countrycode": "US",
-       		"address": "",
-       		"zipcode": "89119",
+		"address": "73 S Bedford",
+       		"zipcode": "10514",
        		"state": "NY",
        		"isairport": "false",
-       		"countryname": "United States",
-       		"locality": "Chappaqua",
-       		"longitude": -115.176067,
-       		"sublocality": "null",
-       		"latitude": 36.09551
+       		"locality": "Chappaqua"
        	}
     }
     
@@ -234,12 +222,38 @@ Gets prices for specified pick up and drop off location for different Car Classe
 
 Parameter | Required | Description
 --------- | ------- | -----------
-passenger | true | Passenger information that includes his name and contact info
-type | true | Point to Point (PP), Hourly (HR) or Daily (DL)
+passenger | true | Passenger information that includes his name and contact info (see below)
+type | true | Point to Point (PP) or Hourly (HR)
+hours | only if type=HR | Number of hours for hourly jobs
 date | true | Date of the Pick Up
 time | true | Time of the Pick Up
 pickup | true | Pick Up Location
 dropoff | true | Drop Off Location
+passengers | false | Number of Passengers, defaults to 1 if skipped
+luggage | false | Number of Luggage itesm, defaults to 1 if skipped
+
+
+### Passenger Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+name_last | true | Passenger Last Name
+name_first | true | Passenger First Name
+email | true | Passenger email address
+phone | true | Passenger phone number
+
+
+### Location Parameters
+Parameter | Required | Description
+--------- | ------- | -----------
+isairport | true | Location is an airport "true" or "false"
+countrycode | true | Country Code
+airportcode | isairport | Airport IATA code, only required when isairport="true"
+airlinecode | isairport | Airline IATA code, please refer to [IATA Airline/Airport Search](http://www.iata.org/publications/Pages/code-search.aspx)
+flightno | isairport | Flight no, only required when isairport="true"
+state | only if countrycode="US" and !isairport | US State, required only when isairport="false" and countrycode is "US"
+locality | !isairport | City or Locality
+zipcode | !isairport | Postal or Zip Code
 
 
 Returns a Car Classes with Prices and Meet and Greet Options along with the token that serves as Booking identifier for further requests
